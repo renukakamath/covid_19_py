@@ -1,0 +1,27 @@
+{% include 'user_header.html' %}
+<center>
+	<form method="post">
+		<h2>View Doctor Detasils</h2>
+
+	<table class="table" style="width: 500px;">
+		<tr>
+			<th>Doctor name</th>
+			<th>Place</th>
+			<th>Phone</th>
+			<th></th>
+			
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['fname']}} {{i['lname']}}</td>
+			<td>{{i['place']}}</td>
+		<td>{{i['phone']}}</td>
+			<td><a href="user_make_appointment?prediction_id={{i['prediction_id']}}&doctor_id={{i['doctor_id']}}" class="btn btn-info">Appointment</a></td>
+			
+
+		</tr>
+		{% endfor %}
+	</table>
+	</form>
+</center>
+{% include 'footer.html' %}

@@ -1,0 +1,37 @@
+{% include 'admin_header.html' %}
+<center>
+	<form method="post"  enctype="multipart/form-data">
+	
+		{% if data['pre']%}
+		<h1>PREDICTION HISTORY</h1>
+		<table class="table" style="width: 1200px">
+			<tr>
+				<th>SNO</th>
+				
+				<th>DATA UPLOADED</th>
+				<th>OUTPUT</th>
+				<th></th>
+				<th></th>
+			</tr>
+			{% for row in data['pre']%}
+			<tr>
+				<td>{{loop.index}}</td>
+				
+				<td><a href="/{{row['datasuploaded']}}" download=""><img src="/{{row['datasuploaded']}}" style="width: 150px;height: 150px"></a></td>
+				<td>{{row['output']}}</td>
+				{% if row['output']=='Normal'%}
+				<td><h6> Normal  Output</h6></td>
+				
+				{% else %}
+				<td><h6> please consult a doctor </h6></td>
+				<!-- <td><a href="user_view_doctors?prediction_id={{row['prediction_id']}}" class="btn btn-primary">Make Appontment</a></td> -->
+				
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+		
+		{% endif %}
+</form>
+</center>
+{% include 'footer.html' %}

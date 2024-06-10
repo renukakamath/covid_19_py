@@ -1,0 +1,29 @@
+{% include 'admin_header.html' %}
+<center>
+	<form method="post">
+		<h1>ADD SYMPTOMS</h1>
+		<table>
+			<tr>
+				<th><input type="text" name="sym" placeholder="symptoms.."></th>
+				<td><input type="submit" name="submit" value="ADD"></td>
+			</tr>
+		</table>
+		{% if data['sym']%}
+		<h1>ADDED SYMPTOMS</h1>
+		<table class="table" style="width: 500px;">
+			<tr>
+				<th>SNO</th>
+				<th>SYMPTOMS</th>
+			</tr>
+			{% for row in data['sym']%}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['symptoms']}}</td>
+				<td><a href="?action=delete&did={{row['symptom_id']}}&id={{data['id']}}" class="btn btn-success">delete</a></td> 
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</form>
+</center>
+{% include 'footer.html' %}

@@ -1,0 +1,57 @@
+{% include 'admin_header.html' %}
+<center>
+	<form method="post">
+		{% if data['al_up']%}
+		<h1>UPDATE DETAILS</h1>
+		<table>
+			<tr>
+				<th>TEETH</th>
+				<td><input type="text" name="name" value="{{data['al_up'][0]['alzimers']}}"></td>
+			</tr>
+			<tr>
+				<th>DETAILS</th>
+				<td><input type="text" name="det" value="{{data['al_up'][0]['details']}}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="updatez" value="UPDATE"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1>MANAGE TEETH</h1>
+		<table>
+			<tr>
+				<th>TEETH</th>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<th>DETAILS</th>
+				<td><input type="text" name="det"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="ADD"></td>
+			</tr>
+		</table>
+		{% endif %}
+		{% if data['alz']%}
+		<h1>ADDED TEETH PROBLEMS</h1>
+		<table class="table" style="width: 1000px;">
+			<tr>
+				<th>SNO</th>
+				<th>TEETH</th>
+				<th>DETAILS</th>
+			</tr>
+			{% for row in data['alz']%}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['alzimers']}}</td>
+				<td>{{row['details']}}</td>
+				<td><a href="?action=delete&id={{row['alzimers_id']}}" class="btn btn-success">delete</a></td>
+			<td><a href="?action=update&id={{row['alzimers_id']}}" class="btn btn-success">update</a></td>
+			<td><a href="admin_Add_symptoms?id={{row['alzimers_id']}}" class="btn btn-primary">Add Symptoms</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</form>
+</center>
+{% include 'footer.html' %}
